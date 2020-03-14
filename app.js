@@ -83,7 +83,7 @@ if(!fd)
 
   promise.then(
     function(data) {
-      alert("Successfully uploaded photo.");
+      console.log("Successfully uploaded photo.");
       saveCheckboxData(numberOfPictures);
     },
     function(err) {
@@ -172,7 +172,7 @@ function saveDocumentTxt(name) {
 
   promise.then(
     function(data) {
-      alert("Successfully uploaded photo.");
+      alert("Successfully uploaded photo and info. Thanks!");
       //viewAlbum(albumName);
     },
     function(err) {
