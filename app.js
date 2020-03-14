@@ -106,45 +106,52 @@ present */
     event.preventDefault();
 
     /* Obtain values from each field in form */
-    const positivo = document.getElementById("cbox2").checked;
-    const esperando = document.getElementById("cbox3").checked;
-    const negativo = document.getElementById("cbox4").checked;
-    const no = document.getElementById("cbox5").checked;
-    const filename = name + ".txt";
+    var positivo = document.getElementById("cbox2").checked;
+    var esperando = document.getElementById("cbox3").checked;
+    var negativo = document.getElementById("cbox4").checked;
+    var no = document.getElementById("cbox5").checked;
+    var filename = name + ".txt";
 
     /* Compose text file content */
-    const text = `
-    positivo:${positivo}
-    esperando:${esperando}
-    negativo:${negativo}
-    no:${no}
-    `;
+    var text = "-positivo:" + positivo + "-esperando:" + esperando + "-negativo:" + negativo + "-no:" + no;
 
     /* Create temporary link element and trigger file download  */
-    const link = document.createElement("a");
-    const href = "data:text/plain;charset=utf-8," + encodeURIComponent(text);
-    link.setAttribute("href", href);
-    link.id= "textToDownload";
-    link.setAttribute("download", textFormData);
+    //const link = document.createElement("a");
+    //const href = "data:text/plain;charset=utf-8," + text;
 
+    var blobfile = new Blob([text], {type: 'text/plain'});
     textFormData = new FormData();
-    textFormData.append("text", href);
+    textFormData.append("info", blobfile, "name.txt");
 
-    document.body.appendChild(link);
+  //blobfile = dataURLtoBlob(href);
+    
+  //textFormData = new FormData();
+  //textFormData.append("image", blobfile, "filename.png");
 
-    //link.click();
+
+
+    //link.setAttribute("href", href);
+    //link.id= "textToDownload";
+    //link.setAttribute("download", textFormData);
+
+
+
+    //document.body.appendChild(link);
+
+  //link.click();
   saveDocumentTxt(filename);
-  document.body.removeChild(link);
+  //document.body.removeChild(link);
 }
 
 function saveDocumentTxt(name) {
-  console.log(document.getElementById("textToDownload"));
-  var files = textFormData.get("text");
+  //console.log(document.getElementById("textToDownload"));
+  var files = textFormData;
 
-  if (!files.length) {
-    return alert("Please choose a file to upload first.");
+  if (files.entries().next().done) {
+      return alert("Please choose a file to upload first.");
   }
-  var file = files[0];
+  console.log(files.get("info"));
+  var file = files.get("info");
   var fileName = name;
   var albumPhotosKey = encodeURIComponent(albumName) + "/";
 
