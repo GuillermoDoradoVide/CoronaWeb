@@ -1,21 +1,22 @@
-Hi <?php echo htmlspecialchars($_POST['name']); ?>.
-You are <?php echo (int)$_POST['age']; ?> years old.
-
-<!--
+<html>
+<body>
 <?php
-    $img = $_POST['image'];
-    $folderPath = "upload/";
-  
-    $image_parts = explode(";base64,", $img);
-    $image_type_aux = explode("image/", $image_parts[0]);
-    $image_type = $image_type_aux[1];
-  
-    $image_base64 = base64_decode($image_parts[1]);
-    $fileName = uniqid() . '.png';
-  
-    $file = $folderPath . $fileName;
-    file_put_contents($file, $image_base64);
+    function trigger(){
+        $img = $_POST['image'];
+        $folderPath = "upload/";
+      
+        $image_parts = explode(";base64,", $img);
+        $image_type_aux = explode("image/", $image_parts[0]);
+        $image_type = $image_type_aux[1];
+      
+        $image_base64 = base64_decode($image_parts[1]);
+        $fileName = uniqid() . '.png';
+      
+        $file = $folderPath . $fileName;
+        file_put_contents($file, $image_base64);
   
     print_r($fileName);
+    }
+    trigger();
 ?>
--->
+</body>
