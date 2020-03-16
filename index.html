@@ -7,8 +7,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
     <script src="app.js"></script>
-    
-       
+
     <script>
     var base64;
        function getHtml(template) {
@@ -66,8 +65,10 @@
   Webcam.set({
       width: 490,
       height: 390,
+      dest_width: 640,
+      dest_height: 480,
       image_format: 'jpeg',
-      jpeg_quality: 90
+      jpeg_quality: 100
   });
   
   Webcam.attach( '#my_camera' );
